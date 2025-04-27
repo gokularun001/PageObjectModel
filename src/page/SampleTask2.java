@@ -1,30 +1,29 @@
 package page;
 
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import testcase.BaseTest;
 
-public class SimpleTask extends BaseTest {
+public class SampleTask2 extends BaseTest {
     WebDriver driver;
 
-    public SimpleTask (WebDriver driver)
-    {
+    public SampleTask2(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver,this);
     }
-    @FindBy(xpath = "//input[@placeholder='Username']")
+    @FindBy(xpath = "//input[@id='username']")
     WebElement username;
-    @FindBy(xpath = "//input[@placeholder='Password']")
+    @FindBy(xpath = "//input[@id='password']")
     WebElement userpassword;
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//button[@id='submit']")
     WebElement buttonclick;
-    public void setUserName(String user,String pass) {
+
+    public void login(String user,String pass){
         username.sendKeys(user);
         userpassword.sendKeys(pass);
-    }
-    public void clickLogin(){
         buttonclick.click();
     }
 }
