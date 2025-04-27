@@ -1,32 +1,23 @@
 package testcase;
 
-import io.restassured.mapper.ObjectMapper;
-import io.restassured.mapper.ObjectMapperDeserializationContext;
-import io.restassured.mapper.ObjectMapperSerializationContext;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.Test;
 
 public class Api9Test {
+
     @Test
-    public void serial() {
+    void serial() throws JsonProcessingException {
         String jsonFormat = "{\n" +
                 "  \"name\" : \"gokularunvijay\",\n" +
                 "  \"color\" : \"automation tester\"\n" +
                 "}";
 
-        ObjectMapper gk = new ObjectMapper() {
-            @Override
-            public Object deserialize(ObjectMapperDeserializationContext objectMapperDeserializationContext) {
-                return null;
-            }
+        ObjectMapper mapper = new ObjectMapper();
 
-            @Override
-            public Object serialize(ObjectMapperSerializationContext objectMapperSerializationContext) {
-                return null;
-            }
-        };
-        Api3Test ak = gk.equals(jsonFormat, Api3Test.class);
-
-        System.out.println(ak.getColor());
-        System.out.println(ak.getName());
+        Api3Test go = mapper.readValue(jsonFormat, Api3Test.class);
+        System.out.println(go.getColor());
+        System.out.println(go.getName());
     }
 }
+
